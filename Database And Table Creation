@@ -1,0 +1,146 @@
+• 𝑫𝒂𝒕𝒂𝒃𝒂𝒔𝒆
+Create Database Disaster_Management_System;
+
+• 𝑼𝒔𝒊𝒏𝒈 𝑫𝒂𝒕𝒂𝒃𝒂𝒔𝒆 𝑭𝒐𝒓 𝑺𝒕𝒐𝒓𝒊𝒏𝒈 𝑻𝒂𝒃𝒍𝒆𝒔
+Use Disaster_Management_System;
+
+• 𝑻𝒂𝒃𝒍𝒆𝒔
+𝟏)𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐭𝐢𝐨𝐧 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Description_Table (
+   description_id INT PRIMARY KEY,
+   description_name VARCHAR(5000),
+   disaster_id INT
+);
+
+𝟐)𝐃𝐢𝐬𝐚𝐬𝐭𝐞𝐫 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Disaster_Table (
+   Disaster_id INT PRIMARY KEY,
+   disaster_name VARCHAR(100),
+   disaster_date DATE,
+   cause_of_disaster VARCHAR(2000),
+   place_id INT,
+   time TIME,
+   disaster_details VARCHAR(500),
+   direct_effect_id INT,
+   indirect_effect_id INT,
+   description_id INT
+);
+
+𝟑)𝐏𝐥𝐚𝐜𝐞 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Place_Table (
+   place_id INT PRIMARY KEY,
+   place_name VARCHAR(100),
+   country VARCHAR(50),
+   city VARCHAR(100),
+   state VARCHAR(100)
+);
+
+𝟒)𝐏𝐞𝐨𝐩𝐥𝐞 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE People (
+   people_id INT PRIMARY KEY,
+   people_name VARCHAR(200),
+   people_no VARCHAR(10),
+   save_id INT,
+   victim_id INT,
+   family_id INT
+);
+
+𝟓)𝐒𝐚𝐯𝐞 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Save_Table (
+   save_id INT PRIMARY KEY,
+   save_date DATE,
+   save_time TIME,
+   save_location VARCHAR(200),
+   details VARCHAR(200),
+   victim_id INT,
+   disaster_id INT,
+   rescued VARCHAR(10)
+);
+
+𝟔)𝐃𝐞𝐚𝐭𝐡 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Death (
+   death_no INT PRIMARY KEY,
+   identified VARCHAR(10),
+   cause_of_death VARCHAR(100),
+   date_of_death DATE,
+   time_of_death TIME,
+   disaster_id INT,
+   victim_id INT
+);
+
+𝟕)𝐕𝐢𝐜𝐭𝐢𝐦 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Victim (
+   victim_id INT PRIMARY KEY,
+   victim_name VARCHAR(100),
+   injured VARCHAR(10),
+   affected VARCHAR(10),
+   missing VARCHAR(10),
+   gender VARCHAR(10),
+   age INT,
+   disaster_id INT,
+   family_id INT
+);
+
+𝟖)𝐅𝐚𝐦𝐢𝐥𝐲 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Family_Table (
+   family_id INT PRIMARY KEY,
+   grandparents INT,
+   parents INT,
+   children INT,
+   compensation_id INT,
+   requirement VARCHAR(100),
+   dead_family_members INT
+);
+
+𝟗)𝐄𝐜𝐨𝐧𝐨𝐦𝐢𝐜 𝐃𝐚𝐦𝐚𝐠𝐞 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Economic_Damage_Table (
+   damage_id INT PRIMARY KEY,
+   disaster_id INT,
+   property_damage_amt INT,
+   agriculture_damage_amt INT,
+   technical_damage_amt INT
+);
+
+𝟏𝟎)𝐂𝐨𝐦𝐩𝐞𝐧𝐬𝐚𝐭𝐢𝐨𝐧 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Compensation_Table (
+   compensation_id INT PRIMARY KEY,
+   compensation VARCHAR(100),
+   compensation_amount INT,
+   date_paid INT,
+   victim_id INT
+);
+
+𝟏𝟏)𝐃𝐢𝐫𝐞𝐜𝐭 𝐄𝐟𝐟𝐞𝐜𝐭𝐬 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Direct_Effects_Table (
+   direct_effect_id INT PRIMARY KEY,
+   disaster_id INT,
+   description VARCHAR(1000),
+   direct_impact_type VARCHAR(200),
+   direct_severity VARCHAR(500)
+);
+
+𝟏𝟐)𝐈𝐧𝐝𝐢𝐫𝐞𝐜𝐭 𝐄𝐟𝐟𝐞𝐜𝐭𝐬 𝐓𝐚𝐛𝐥𝐞
+CREATE TABLE Indirect_Effects_Table (
+   indirect_effect_id INT PRIMARY KEY,
+   disaster_id INT,
+   description VARCHAR(1000),
+   indirect_impact_type VARCHAR(200),
+   indirect_severity VARCHAR(500)
+);
+
+𝐀𝐝𝐝𝐢𝐧𝐠 𝐟𝐨𝐫𝐞𝐢𝐠𝐧 𝐤𝐞𝐲 𝐜𝐨𝐧𝐬𝐭𝐫𝐚𝐢𝐧𝐭𝐬
+ALTER TABLE Description_Table
+ADD FOREIGN KEY (disaster_id) REFERENCES Disaster_Table(Disaster_id);
+
+ALTER TABLE Disaster_Table
+ADD FOREIGN KEY (description_id) REFERENCES Description_Table(description_id),
+ADD FOREIGN KEY (place_id) REFERENCES Place_Table(place_id),
+ADD FOREIGN KEY (direct_effect_id) REFERENCES Direct_Effects_Table(direct_effect_id),
+ADD FOREIGN KEY (indirect_effect_id) REFERENCES Indirect_Effects_Table(indirect_effect_id);
+
+ALTER TABLE Victim
+ADD FOREIGN KEY (family_id) REFERENCES Family_Table(family_id),
+ADD FOREIGN KEY (disaster_id) REFERENCES Disaster_Table(Disaster_id);
+
+ALTER TABLE Family_Table
+ADD FOREIGN KEY (compensation_id) REFERENCES Compensation_Table(compensation_id);
