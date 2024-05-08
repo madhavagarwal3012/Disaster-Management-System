@@ -1,1 +1,121 @@
 
+𝐐𝐮𝐞𝐫𝐲 𝟏
+1)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒅𝒆𝒕𝒂𝒊𝒍𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒅𝒊𝒔𝒂𝒔𝒕𝒆𝒓𝒔 𝒕𝒉𝒂𝒕 𝒐𝒄𝒄𝒖𝒓𝒓𝒆𝒅 𝒊𝒏 𝑴𝒂𝒉𝒂𝒓𝒂𝒔𝒉𝒕𝒓𝒂.
+SELECT * FROM Disaster_Table WHERE place_id IN (SELECT place_id FROM Place_Table WHERE state = 'Maharashtra');
+
+𝐐𝐮𝐞𝐫𝐲 𝟐
+2)𝑳𝒊𝒔𝒕 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒇𝒍𝒐𝒐𝒅𝒔.
+SELECT * FROM Victim WHERE affected = 'Yes';
+
+𝐐𝐮𝐞𝐫𝐲 𝟑
+3)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒄𝒊𝒕𝒊𝒆𝒔 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒄𝒚𝒄𝒍𝒐𝒏𝒆𝒔.
+SELECT DISTINCT city FROM Place_Table WHERE place_id IN (SELECT place_id FROM Disaster_Table WHERE disaster_id IN (SELECT disaster_id FROM Description_Table WHERE description_name LIKE '%Cyclone%'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟒
+4)𝑭𝒊𝒏𝒅 𝒕𝒉𝒆 𝒕𝒐𝒕𝒂𝒍 𝒏𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒅𝒆𝒂𝒕𝒉𝒔 𝒄𝒂𝒖𝒔𝒆𝒅 𝒃𝒚 𝒃𝒖𝒊𝒍𝒅𝒊𝒏𝒈 𝒄𝒐𝒍𝒍𝒂𝒑𝒔𝒆𝒔.
+SELECT COUNT(*) AS total_deaths FROM Death WHERE cause_of_death = 'Building collapse';
+
+𝐐𝐮𝐞𝐫𝐲 𝟓
+5)𝑮𝒆𝒕 𝒕𝒉𝒆 𝒅𝒆𝒕𝒂𝒊𝒍𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒊𝒏𝒋𝒖𝒓𝒆𝒅 𝒂𝒏𝒅 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒅𝒊𝒔𝒂𝒔𝒕𝒆𝒓𝒔 𝒊𝒏 𝑻𝒂𝒎𝒊𝒍 𝑵𝒂𝒅𝒖.
+SELECT * FROM Victim WHERE (injured = 'Yes' OR affected = 'Yes') AND family_id IN (SELECT family_id FROM Disaster_Table WHERE place_id IN (SELECT place_id FROM Place_Table WHERE state = 'Tamil Nadu'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟔
+6)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒂𝒏𝒅 𝒑𝒉𝒐𝒏𝒆 𝒏𝒖𝒎𝒃𝒆𝒓𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒑𝒆𝒐𝒑𝒍𝒆 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒔𝒂𝒗𝒆𝒅 𝒇𝒓𝒐𝒎 𝒅𝒓𝒐𝒘𝒏𝒊𝒏𝒈 𝒊𝒏𝒄𝒊𝒅𝒆𝒏𝒕𝒔.
+SELECT people_name, people_no FROM People WHERE save_id IN (SELECT save_id FROM Save_Table WHERE details LIKE '%drowning%');
+
+𝐐𝐮𝐞𝐫𝐲 𝟕
+7)𝙇𝙞𝙨𝙩 𝙖𝙡𝙡 𝙙𝙞𝙨𝙖𝙨𝙩𝙚𝙧𝙨 𝙩𝙝𝙖𝙩 𝙤𝙘𝙘𝙪𝙧𝙧𝙚𝙙 𝙖𝙛𝙩𝙚𝙧 2021-01-01.
+SELECT * FROM Disaster_Table WHERE disaster_date > '2021-01-01';
+
+𝐐𝐮𝐞𝐫𝐲 𝟖
+8)𝑭𝒊𝒏𝒅 𝒕𝒉𝒆 𝒕𝒐𝒕𝒂𝒍 𝒏𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒎𝒊𝒔𝒔𝒊𝒏𝒈 𝒑𝒆𝒐𝒑𝒍𝒆 𝒂𝒄𝒓𝒐𝒔𝒔 𝒂𝒍𝒍 𝒅𝒊𝒔𝒂𝒔𝒕𝒆𝒓𝒔.
+SELECT COUNT(*) AS total_missing FROM Victim WHERE missing = 'Yes';
+
+𝐐𝐮𝐞𝐫𝐲 𝟗
+9)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒅𝒆𝒕𝒂𝒊𝒍𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒇𝒂𝒎𝒊𝒍𝒊𝒆𝒔 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒈𝒂𝒔 𝒍𝒆𝒂𝒌𝒔.
+SELECT * FROM Family_Table WHERE family_id IN (SELECT family_id FROM Victim WHERE disaster_id IN (SELECT disaster_id FROM Description_Table WHERE description_name LIKE '%Gas leak%'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟎
+10)𝑮𝒆𝒕 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒂𝒏𝒅 𝒂𝒈𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒇𝒆𝒎𝒂𝒍𝒆 𝒗𝒊𝒄𝒕𝒊𝒎𝒔.
+SELECT victim_name, age FROM Victim WHERE gender = 'Female';
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟏
+11)𝑳𝒊𝒔𝒕 𝒂𝒍𝒍 𝒅𝒊𝒔𝒂𝒔𝒕𝒆𝒓𝒔 𝒂𝒍𝒐𝒏𝒈 𝒘𝒊𝒕𝒉 𝒕𝒉𝒆 𝒄𝒐𝒓𝒓𝒆𝒔𝒑𝒐𝒏𝒅𝒊𝒏𝒈 𝒑𝒍𝒂𝒄𝒆 𝒏𝒂𝒎𝒆𝒔.
+SELECT Disaster_Table.*, Place_Table.place_name FROM Disaster_Table JOIN Place_Table ON Disaster_Table.place_id = Place_Table.place_id;
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟐
+12)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒃𝒐𝒕𝒉 𝒊𝒏𝒋𝒖𝒓𝒆𝒅 𝒂𝒏𝒅 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅.
+SELECT victim_name FROM Victim WHERE injured = 'Yes' AND affected = 'Yes';
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟑
+13)𝑭𝒊𝒏𝒅 𝒕𝒉𝒆 𝒕𝒐𝒕𝒂𝒍 𝒏𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒑𝒆𝒐𝒑𝒍𝒆 𝒔𝒂𝒗𝒆𝒅 𝒇𝒓𝒐𝒎 𝒇𝒊𝒓𝒆 𝒂𝒄𝒄𝒊𝒅𝒆𝒏𝒕𝒔.
+SELECT COUNT(*) AS total_saved FROM People WHERE save_id IN (SELECT save_id FROM Save_Table WHERE details LIKE '%fire%');
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟒
+14)𝑮𝒆𝒕 𝒕𝒉𝒆 𝒅𝒆𝒕𝒂𝒊𝒍𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒂𝒈𝒆𝒅 𝒃𝒆𝒕𝒘𝒆𝒆𝒏 30 𝒂𝒏𝒅 40.
+SELECT * FROM Victim WHERE age BETWEEN 30 AND 40;
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟓
+15)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒄𝒊𝒕𝒊𝒆𝒔 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒇𝒍𝒐𝒐𝒅𝒔.
+SELECT DISTINCT city FROM Place_Table WHERE place_id IN (SELECT place_id FROM Disaster_Table WHERE disaster_id IN (SELECT disaster_id FROM Description_Table WHERE description_name LIKE '%Flood%'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟔
+16)𝑳𝒊𝒔𝒕 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒓𝒆𝒔𝒄𝒖𝒆𝒅.
+SELECT * FROM Victim WHERE victim_id IN (SELECT victim_id FROM Save_Table WHERE rescued = 'Yes');
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟕
+17)𝑭𝒊𝒏𝒅 𝒕𝒉𝒆 𝒕𝒐𝒕𝒂𝒍 𝒏𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒅𝒆𝒂𝒕𝒉𝒔 𝒄𝒂𝒖𝒔𝒆𝒅 𝒃𝒚 𝒄𝒚𝒄𝒍𝒐𝒏𝒆𝒔.
+SELECT COUNT(*) AS total_deaths FROM Death WHERE cause_of_death = 'Cyclone';
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟖
+18)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒂𝒏𝒅 𝒂𝒈𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒂𝒓𝒆 𝒎𝒊𝒔𝒔𝒊𝒏𝒈.
+SELECT victim_name, age FROM Victim WHERE missing = 'Yes';
+
+𝐐𝐮𝐞𝐫𝐲 𝟏𝟗
+19)𝑮𝒆𝒕 𝒕𝒉𝒆 𝒅𝒆𝒕𝒂𝒊𝒍𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒇𝒂𝒎𝒊𝒍𝒊𝒆𝒔 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒕𝒓𝒂𝒊𝒏 𝒂𝒄𝒄𝒊𝒅𝒆𝒏𝒕𝒔.
+SELECT * FROM Family_Table WHERE family_id IN (SELECT family_id FROM Victim WHERE disaster_id IN (SELECT disaster_id FROM Description_Table WHERE description_name LIKE '%Train derailment%'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟎
+20)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒅𝒊𝒔𝒂𝒔𝒕𝒆𝒓𝒔 𝒊𝒏 𝑮𝒐𝒂.
+SELECT victim_name FROM Victim WHERE family_id IN (SELECT family_id FROM Disaster_Table WHERE place_id IN (SELECT place_id FROM Place_Table WHERE state = 'Goa'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟏
+21)𝑳𝒊𝒔𝒕 𝒂𝒍𝒍 𝒅𝒊𝒔𝒂𝒔𝒕𝒆𝒓𝒔 𝒂𝒍𝒐𝒏𝒈 𝒘𝒊𝒕𝒉 𝒕𝒉𝒆𝒊𝒓 𝒓𝒆𝒔𝒑𝒆𝒄𝒕𝒊𝒗𝒆 𝒅𝒊𝒔𝒂𝒔𝒕𝒆𝒓 𝒅𝒂𝒕𝒆𝒔.
+SELECT disaster_name, disaster_date FROM Disaster_Table;
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟐
+22)𝑭𝒊𝒏𝒅 𝒕𝒉𝒆 𝒕𝒐𝒕𝒂𝒍 𝒏𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒇𝒂𝒎𝒊𝒍𝒊𝒆𝒔 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒇𝒍𝒐𝒐𝒅𝒔.
+SELECT COUNT(DISTINCT family_id) AS total_families FROM Victim WHERE disaster_id IN (SELECT disaster_id FROM Description_Table WHERE description_name LIKE '%Flood%');
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟑
+23)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒂𝒏𝒅 𝒑𝒉𝒐𝒏𝒆 𝒏𝒖𝒎𝒃𝒆𝒓𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒑𝒆𝒐𝒑𝒍𝒆 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒔𝒂𝒗𝒆𝒅 𝒇𝒓𝒐𝒎 𝒍𝒂𝒏𝒅𝒔𝒍𝒊𝒅𝒆𝒔.
+SELECT people_name, people_no FROM People WHERE save_id IN (SELECT save_id FROM Save_Table WHERE details LIKE '%landslide%');
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟒
+24)𝑮𝒆𝒕 𝒕𝒉𝒆 𝒅𝒆𝒕𝒂𝒊𝒍𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒂𝒓𝒆 𝒊𝒏𝒋𝒖𝒓𝒆𝒅.
+SELECT * FROM Victim WHERE injured = 'Yes';
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟓
+25)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒄𝒊𝒕𝒊𝒆𝒔 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒆𝒂𝒓𝒕𝒉𝒒𝒖𝒂𝒌𝒆𝒔.
+SELECT DISTINCT city FROM Place_Table WHERE place_id IN (SELECT place_id FROM Disaster_Table WHERE disaster_id IN (SELECT disaster_id FROM Description_Table WHERE description_name LIKE '%Earthquake%'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟔
+26)𝑳𝒊𝒔𝒕 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒔𝒂𝒗𝒆𝒅 𝒃𝒚 𝒓𝒆𝒔𝒄𝒖𝒆 𝒕𝒆𝒂𝒎𝒔.
+SELECT * FROM Victim WHERE victim_id IN (SELECT victim_id FROM Save_Table WHERE saved_by_team = 'Yes');
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟕
+27)𝑭𝒊𝒏𝒅 𝒕𝒉𝒆 𝒕𝒐𝒕𝒂𝒍 𝒏𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒅𝒆𝒂𝒕𝒉𝒔 𝒄𝒂𝒖𝒔𝒆𝒅 𝒃𝒚 𝒅𝒓𝒐𝒘𝒏𝒊𝒏𝒈.
+SELECT COUNT(*) AS total_deaths FROM Death WHERE cause_of_death = 'Drowning';
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟖
+28)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒗𝒊𝒄𝒕𝒊𝒎𝒔 𝒘𝒉𝒐 𝒘𝒆𝒓𝒆 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒅𝒊𝒔𝒂𝒔𝒕𝒆𝒓𝒔 𝒊𝒏 𝑲𝒆𝒓𝒂𝒍𝒂.
+SELECT victim_name FROM Victim WHERE family_id IN (SELECT family_id FROM Disaster_Table WHERE place_id IN (SELECT place_id FROM Place_Table WHERE state = 'Kerala'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟐𝟗
+29)𝑮𝒆𝒕 𝒕𝒉𝒆 𝒅𝒆𝒕𝒂𝒊𝒍𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒇𝒂𝒎𝒊𝒍𝒊𝒆𝒔 𝒂𝒇𝒇𝒆𝒄𝒕𝒆𝒅 𝒃𝒚 𝒕𝒔𝒖𝒏𝒂𝒎𝒊𝒔.
+SELECT * FROM Family_Table WHERE family_id IN (SELECT family_id FROM Victim WHERE disaster_id IN (SELECT disaster_id FROM Description_Table WHERE description_name LIKE '%Tsunami%'));
+
+𝐐𝐮𝐞𝐫𝐲 𝟑𝟎
+30)𝑹𝒆𝒕𝒓𝒊𝒆𝒗𝒆 𝒕𝒉𝒆 𝒏𝒂𝒎𝒆𝒔 𝒂𝒏𝒅 𝒂𝒈𝒆𝒔 𝒐𝒇 𝒂𝒍𝒍 𝒎𝒂𝒍𝒆 𝒗𝒊𝒄𝒕𝒊𝒎𝒔.
+SELECT victim_name, age FROM Victim WHERE gender = 'Male';
+
