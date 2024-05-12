@@ -101,7 +101,7 @@ INSERT INTO Place_Table (place_id, place_name, country, city, state) VALUES
 (30, 'Ranchi', 'India', 'Ranchi', 'Jharkhand');
 
 𝟒)𝐏𝐞𝐨𝐩𝐥𝐞 𝐓𝐚𝐛𝐥𝐞
-INSERT INTO People (people_id, people_name, people_no, save_id, victim_id, family_id) VALUES
+INSERT INTO People_Table (people_id, people_name, people_no, save_id, victim_id, family_id) VALUES
 (1, 'Rajesh Sharma', '98765XXXXX', 1, 1, 1),
 (2, 'Priya Patel', '98766XXXXX', 2, 2, 2),
 (3, 'Amit Singh', '98767XXXXX', 3, 3, 3),
@@ -167,7 +167,7 @@ INSERT INTO Save_Table (save_id, save_date, save_time, save_location, details, v
 (30, '2021-07-03', '07:25:00', 'Ranchi', 'Evacuated from flood-hit area.', 30, 30, 'Yes');
 
 𝟔)𝐃𝐞𝐚𝐭𝐡 𝐓𝐚𝐛𝐥𝐞
-INSERT INTO Death (death_no, identified, cause_of_death, date_of_death, time_of_death, disaster_id, victim_id) VALUES
+INSERT INTO Death_Table (death_no, identified, cause_of_death, date_of_death, time_of_death, disaster_id, victim_id) VALUES
 (1, 'Yes', 'Building collapse', '2021-07-15', '05:00:00', 1, 1),
 (2, 'Yes', 'Landslide', '2021-08-11', '05:05:00', 2, 2),
 (3, 'Yes', 'Drowning', '2021-11-29', '05:10:00', 3, 3),
@@ -200,7 +200,7 @@ INSERT INTO Death (death_no, identified, cause_of_death, date_of_death, time_of_
 (30, 'Yes', 'Flood', '2021-07-03', '07:25:00', 30, 30);
 
 𝟕)𝐕𝐢𝐜𝐭𝐢𝐦 𝐓𝐚𝐛𝐥𝐞
-INSERT INTO Victim (victim_id, victim_name, injured, affected, missing, gender, age, disaster_id, family_id) VALUES
+INSERT INTO Victim_Table (victim_id, victim_name, injured, affected, missing, gender, age, disaster_id, family_id) VALUES
 (1, 'Rajesh Sharma', 'No', 'Yes', 'No', 'Male', 45, 1, 1),
 (2, 'Priya Patel', 'Yes', 'Yes', 'No', 'Female', 32, 2, 2),
 (3, 'Amit Singh', 'No', 'Yes', 'No', 'Male', 50, 3, 3),
