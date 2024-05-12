@@ -36,7 +36,7 @@ CREATE TABLE Place_Table (
 );
 
 𝟒)𝐏𝐞𝐨𝐩𝐥𝐞 𝐓𝐚𝐛𝐥𝐞
-CREATE TABLE People (
+CREATE TABLE People_Table (
    people_id INT PRIMARY KEY,
    people_name VARCHAR(200),
    people_no VARCHAR(10),
@@ -58,7 +58,7 @@ CREATE TABLE Save_Table (
 );
 
 𝟔)𝐃𝐞𝐚𝐭𝐡 𝐓𝐚𝐛𝐥𝐞
-CREATE TABLE Death (
+CREATE TABLE Death_Table (
    death_no INT PRIMARY KEY,
    identified VARCHAR(10),
    cause_of_death VARCHAR(100),
@@ -69,7 +69,7 @@ CREATE TABLE Death (
 );
 
 𝟕)𝐕𝐢𝐜𝐭𝐢𝐦 𝐓𝐚𝐛𝐥𝐞
-CREATE TABLE Victim (
+CREATE TABLE Victim_Table (
    victim_id INT PRIMARY KEY,
    victim_name VARCHAR(100),
    injured VARCHAR(10),
