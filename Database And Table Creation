@@ -138,7 +138,7 @@ ADD CONSTRAINT FK FOREIGN KEY (place_id) REFERENCES Place_Table(place_id),
 ADD CONSTRAINT FK FOREIGN KEY (direct_effect_id) REFERENCES Direct_Effects_Table(direct_effect_id),
 ADD CONSTRAINT FK FOREIGN KEY (indirect_effect_id) REFERENCES Indirect_Effects_Table(indirect_effect_id);
 
-ALTER TABLE Victim
+ALTER TABLE Victim_Table
 ADD CONSTRAINT FK FOREIGN KEY (family_id) REFERENCES Family_Table(family_id),
 ADD CONSTRAINT FK FOREIGN KEY (disaster_id) REFERENCES Disaster_Table(Disaster_id);
 
