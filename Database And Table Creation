@@ -130,17 +130,17 @@ CREATE TABLE Indirect_Effects_Table (
 
 𝐀𝐝𝐝𝐢𝐧𝐠 𝐟𝐨𝐫𝐞𝐢𝐠𝐧 𝐤𝐞𝐲 𝐜𝐨𝐧𝐬𝐭𝐫𝐚𝐢𝐧𝐭𝐬
 ALTER TABLE Description_Table
-ADD FOREIGN KEY (disaster_id) REFERENCES Disaster_Table(Disaster_id);
+ADD CONSTRAINT FK FOREIGN KEY (disaster_id) REFERENCES Disaster_Table(Disaster_id);
 
 ALTER TABLE Disaster_Table
-ADD FOREIGN KEY (description_id) REFERENCES Description_Table(description_id),
-ADD FOREIGN KEY (place_id) REFERENCES Place_Table(place_id),
-ADD FOREIGN KEY (direct_effect_id) REFERENCES Direct_Effects_Table(direct_effect_id),
-ADD FOREIGN KEY (indirect_effect_id) REFERENCES Indirect_Effects_Table(indirect_effect_id);
+ADD CONSTRAINT FK FOREIGN KEY (description_id) REFERENCES Description_Table(description_id),
+ADD CONSTRAINT FK FOREIGN KEY (place_id) REFERENCES Place_Table(place_id),
+ADD CONSTRAINT FK FOREIGN KEY (direct_effect_id) REFERENCES Direct_Effects_Table(direct_effect_id),
+ADD CONSTRAINT FK FOREIGN KEY (indirect_effect_id) REFERENCES Indirect_Effects_Table(indirect_effect_id);
 
 ALTER TABLE Victim
-ADD FOREIGN KEY (family_id) REFERENCES Family_Table(family_id),
-ADD FOREIGN KEY (disaster_id) REFERENCES Disaster_Table(Disaster_id);
+ADD CONSTRAINT FK FOREIGN KEY (family_id) REFERENCES Family_Table(family_id),
+ADD CONSTRAINT FK FOREIGN KEY (disaster_id) REFERENCES Disaster_Table(Disaster_id);
 
 ALTER TABLE Family_Table
-ADD FOREIGN KEY (compensation_id) REFERENCES Compensation_Table(compensation_id);
+ADD CONSTRAINT FK FOREIGN KEY (compensation_id) REFERENCES Compensation_Table(compensation_id);
